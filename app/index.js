@@ -8,6 +8,7 @@ import { Nearbyjobs, Popularjobs, ScreenHeaderBtn, Welcome } from '../components
 
 const Home = () => {
     const router = useRouter();
+    const [searchTerm, setSearchTerm] = useState("")
 
     return (
         <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.lightWhite}}>
@@ -33,7 +34,14 @@ const Home = () => {
                         padding: 20,
                         paddingTop: 10,
                 }}>
-                    <Welcome></Welcome>
+                    <Welcome searchTerm={searchTerm}
+                        setSearchTerm={setSearchTerm}
+                        handleClick={() => {
+                            if(searchTerm) {
+                                router.push(`/search/${searchTerm}`)
+                            }
+                        }}
+                    />
                     <Popularjobs></Popularjobs>
                     <Nearbyjobs></Nearbyjobs>
                 </View>
